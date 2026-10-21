@@ -20,8 +20,11 @@
   --rule-strong: #cdd4de;
   --tint: #f6f8fa;
   --panel: #f5f6f8;
-  --accent: #1e6b6e;
-  --link: #1e6b6e;
+  /* Site accent: change this one value (any hex) to recolour the headline, venue, links, Demo button,
+     sliders, selected states and highlighted numbers. --accent-tint follows it automatically. */
+  --accent: #482DA1FF;
+  --accent-tint: color-mix(in srgb, var(--accent) 7%, white);
+  --link: var(--accent);
 
   --sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
@@ -183,6 +186,7 @@ main { padding-bottom: 96px; }
   margin: 48px 0 12px;
 }
 .prose p { color: var(--ink); text-wrap: pretty; }
+.prose strong { font-weight: 600; color: var(--head); }
 .prose p:last-child { margin-bottom: 0; }
 /* A research question: set apart by size and spacing, not by a rule. */
 .prose .question {
@@ -413,7 +417,7 @@ main { padding-bottom: 96px; }
   padding: 3px 10px; border: 1px solid var(--rule-strong); border-radius: 4px; background: #fff; cursor: pointer;
 }
 .sv-tokens button:hover { border-color: var(--ink-2); }
-.sv-tokens button.on { border-color: var(--accent); color: var(--accent); background: #f2f7f7; }
+.sv-tokens button.on { border-color: var(--accent); color: var(--accent); background: var(--accent-tint); }
 .sv-note { font-size: var(--fs-ui); color: var(--ink-2); margin-bottom: 8px; }
 .sv-loading, .sv-error { padding: 40px 0; text-align: center; color: var(--ink-2); font-size: var(--fs-ui); }
 
@@ -687,6 +691,22 @@ main { padding-bottom: 96px; }
   .rw-shell, .try { padding-left: 14px; padding-right: 14px; margin-left: -4px; margin-right: -4px; }
   .teaser { padding: 10px; margin-left: -4px; margin-right: -4px; }
   .teaser-band { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+}
+
+/* ---------- Why it matters: figure + key outcomes ---------- */
+.motivation-figure { margin-top: 32px; }
+.motivation-figure img { display: block; width: 100%; height: auto; }
+.outcomes {
+  margin-top: 28px; padding: 22px 26px 24px; border-radius: 14px;
+  background: var(--accent-tint); border: 1px solid color-mix(in srgb, var(--accent) 22%, white);
+}
+.outcomes-title { margin: 0 0 14px; font-size: 18px; font-weight: 700; color: var(--accent); }
+.outcomes ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px 28px; }
+.outcomes li { padding-left: 14px; border-left: 3px solid var(--accent); }
+.outcome-name { margin: 0 0 4px; font-size: 17px; font-weight: 600; color: var(--head); }
+.outcome-text { margin: 0; font-size: 15.5px; line-height: 1.55; color: var(--ink); }
+@media (max-width: 760px) {
+  .outcomes ul { grid-template-columns: minmax(0, 1fr); }
 }
 
 /* ---------- responsive ---------- */

@@ -3,7 +3,8 @@ import { OperationTable } from "./OperationTable";
 
 // Supplied by the authors. Until the file exists the image request fails and a labelled
 // placeholder naming the expected path is shown; adding the file is enough to publish it.
-const METHOD_FIGURE = "images/method/method_overview.png";
+// teaser/motivation.png holds the five-step method pipeline (the two files' names are swapped).
+const METHOD_FIGURE = "images/teaser/motivation.png";
 
 export function HowItWorks() {
   const [missing, setMissing] = useState(false);
@@ -30,7 +31,11 @@ export function HowItWorks() {
           </div>
         ) : (
           <a href={src} target="_blank" rel="noreferrer" title="Open full-resolution image">
-            <img src={src} alt="Method overview" onError={() => setMissing(true)} />
+            <img
+              src={src}
+              alt="Method overview: 1 collect reasoning traces, 2 annotate reasoning operations, 3 extract hidden representations, 4 construct reasoning vectors, 5 outputs (token-level operation signals and span-level geometry)."
+              onError={() => setMissing(true)}
+            />
           </a>
         )}
         <figcaption>Method overview.</figcaption>

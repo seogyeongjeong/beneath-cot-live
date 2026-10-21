@@ -25,6 +25,8 @@ export interface Health {
   turnstile: boolean;
   max_text_chars?: number;
   max_question_chars?: number;
+  /** GPU upstream behind the proxy ("runpod" | "modal"); informational only. */
+  backend?: string;
 }
 
 export interface Quota {
@@ -149,10 +151,10 @@ export async function runJob(
 
 export const ERROR_HINT: Record<string, string> = {
   dry_run: "This proxy is a dry-run staging instance; it never starts GPU jobs.",
-  rate_limited: "Too many requests from your network. Wait a little and try again, or explore the presets.",
-  busy: "The single GPU worker is busy. Try again in a minute.",
-  quota_exhausted: "Today's free GPU budget for the demo is used up. The presets still work.",
-  service_disabled: "The live GPU demo is paused right now. The presets still work.",
+  rate_limited: "Too many requests from your network. Wait a little and try again.",
+  busy: "The GPU is busy with another request. Try again in a minute.",
+  quota_exhausted: "The demo's GPU budget is used up for now. Please try again later; the rest of the page still works.",
+  service_disabled: "The live GPU demo is paused right now. The rest of the page still works.",
   turnstile_failed: "Human verification failed. Reload the page and try again.",
   forbidden_origin: "This site is not allowed to call the API.",
   worker_unhealthy: "The GPU worker failed its start-up self-test, so it refused to score.",
