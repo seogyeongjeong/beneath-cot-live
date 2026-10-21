@@ -230,7 +230,7 @@ export function TryItYourself() {
               </button>
             </div>
             <p className="rw-muted try-hint">
-              Qwen3-8B answers with thinking enabled, so even 256 tokens often stops it mid-solution.
+              {question.length} / {maxQuestion} characters · Qwen3-8B answers with thinking enabled, so even 256 tokens often stops it mid-solution.
               {live && !health?.generate_enabled && " Generation is not enabled on the server yet."}
             </p>
             {generate.status}
