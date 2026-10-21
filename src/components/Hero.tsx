@@ -53,10 +53,7 @@ export function Hero() {
       <p className="venue">{PAPER.venue}</p>
       <h1 className="headline">What happens beneath the surface of reasoning?</h1>
       <p className="paper-title">{keepHyphenatedWords(PAPER.title)}</p>
-      <p className="hero-lede">
-        We identify distinct reasoning operations in LLM hidden representations, revealing structure beyond words and
-        token positions.
-      </p>
+      
 
       <div className="byline">
         <p className="authors">
@@ -94,6 +91,11 @@ export function Hero() {
           <span>† Corresponding authors</span>
           <span>* Work done during an internship at NAVER AI Lab</span>
         </p>
+        <p className="hero-lede">
+        <span className="tldr-label">TL;DR</span>
+        We identify distinct reasoning operations in LLM hidden representations, revealing structure beyond words and
+        token positions.
+      </p>
       </div>
 
       <ul className="actions">

@@ -8,9 +8,9 @@ import { TraceResult } from "./TraceResult";
 
 // Hosted inference goes through the Cloudflare Worker proxy (beneath-cot-backend/cloudflare) to a
 // Runpod GPU worker; this page only sends text and draws the returned scores. Limits mirror the proxy:
-// MAX_TEXT_CHARS / MAX_QUESTION_CHARS from /api/health, GENERATE_TOKEN_CHOICES = 32, 64, and the
+// MAX_TEXT_CHARS / MAX_QUESTION_CHARS from /api/health, GENERATE_TOKEN_CHOICES = 128, 256, and the
 // worker scores at most the first 256 tokens of a pasted trace.
-const TOKEN_CHOICES = [32, 64] as const;
+const TOKEN_CHOICES = [128, 256] as const;
 const SCORED_TOKENS = 256;
 
 type Mode = "analyze" | "generate";
@@ -80,7 +80,7 @@ function useJob(health: Health | null) {
             {progress.phase === "submitting"
               ? "Sending the request…"
               : progress.phase === "queued"
-                ? `Waiting for the GPU (${Math.round(progress.elapsedMs / 1000)} s). If the model is not loaded yet, starting it can take one to two minutes.`
+                ? `Waiting for the GPU (${Math.round(progress.elapsedMs / 1000)} s). If the model is not loaded yet, starting it can take up to about four minutes.`
                 : `Running on the GPU (${Math.round(progress.elapsedMs / 1000)} s)…`}
           </span>
           <button type="button" className="try-link" onClick={() => abort.current?.abort()}>
@@ -126,13 +126,13 @@ export function TryItYourself() {
   const [results, setResults] = useState<Record<Mode, Trace | null>>({ analyze: null, generate: null });
   const [text, setText] = useState("");
   const [question, setQuestion] = useState("");
-  const [maxNew, setMaxNew] = useState<(typeof TOKEN_CHOICES)[number]>(64);
+  const [maxNew, setMaxNew] = useState<(typeof TOKEN_CHOICES)[number]>(128);
   const analyze = useJob(health);
   const generate = useJob(health);
 
   const live = !!API_BASE && !!health?.enabled;
   const genLive = live && !!health?.generate_enabled;
-  const maxText = health?.max_text_chars ?? 4000;
+  const maxText = health?.max_text_chars ?? 1000;
   const maxQuestion = health?.max_question_chars ?? 1000;
   const result = results[mode];
   const gen = result?.generation;
@@ -230,7 +230,7 @@ export function TryItYourself() {
               </button>
             </div>
             <p className="rw-muted try-hint">
-              Qwen3-8B answers with thinking enabled, so a short token limit usually stops it mid-solution.
+              Qwen3-8B answers with thinking enabled, so even 256 tokens often stops it mid-solution.
               {live && !health?.generate_enabled && " Generation is not enabled on the server yet."}
             </p>
             {generate.status}
@@ -249,6 +249,12 @@ export function TryItYourself() {
             )}
             {!gen && result.truncated && (
               <p className="try-gen-note">Only the first {result.nInputTokens} tokens of the text were scored.</p>
+            )}
+            {result.raw.infrastructure?.gpu && (
+              <p className="try-infra">
+                Computed on {result.raw.infrastructure.gpu}
+                {result.raw.infrastructure.backend ? ` (${result.raw.infrastructure.backend})` : ""}.
+              </p>
             )}
             <TraceResult key={result.job?.id ?? result.tokens.length} trace={result} />
           </div>

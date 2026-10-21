@@ -90,7 +90,7 @@ const sleep = (ms: number, signal?: AbortSignal) =>
     }, { once: true });
   });
 
-const DEADLINE_MS = 4 * 60_000; // cold start (model load + self-test) can take minutes
+const DEADLINE_MS = 8 * 60_000; // cold start (container + model load + self-test) measured up to ~4 min on Modal L4
 
 export async function runJob(
   path: "/api/analyze" | "/api/generate",

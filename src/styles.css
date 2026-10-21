@@ -36,7 +36,7 @@
   --fs-h2: 38px;
   --fs-h3: 26px;
   --fs-intro: 21px;
-  --fs-lede: 20px;
+  --fs-lede: 18px;
   --fs-body: 17.5px;
   --fs-ui: 15px;
   --fs-cap: 15px;
@@ -116,10 +116,21 @@ a { color: var(--link); text-decoration-thickness: 1px; text-underline-offset: 3
   font-size: var(--fs-lede);
   font-weight: 400;
   line-height: 1.55;
-  color: var(--ink-2);
-  max-width: 54em;
-  margin: 12px 0 0;
-  text-wrap: pretty;
+  color: var(--ink);
+  max-width: none;
+  margin: 16px 0 0;
+  padding: 14px 20px;
+  background: var(--accent-tint);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius);
+}
+.tldr-label {
+  display: inline-block;
+  margin-right: 10px;
+  font-weight: 700;
+  font-size: 0.8em;
+  letter-spacing: 0.04em;
+  color: var(--accent);
 }
 .byline { margin-top: 20px; }
 .authors {
@@ -599,6 +610,7 @@ main { padding-bottom: 96px; }
 .ts-host:empty { display: none; }
 .try-result { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--rule); }
 .try-gen-note { font-size: var(--fs-ui); color: var(--ink); margin: 0 0 14px; }
+.try-infra { font-size: 13.5px; color: var(--ink-2); margin: -8px 0 14px; }
 .try-fineprint { font-size: 14px; margin: 28px 0 0; }
 
 /* Shared result viewer */
@@ -612,8 +624,7 @@ main { padding-bottom: 96px; }
 .tr-ops button.on { color: var(--head); border-color: var(--head); }
 .tr-ops button:not(.on) .tr-dot { opacity: 0.35; }
 .tr-dot { width: 8px; height: 8px; border-radius: 2px; flex: none; }
-.tr-layer { min-width: 240px; }
-.tr-layer input { width: 100%; accent-color: var(--accent); }
+.tr-layer { margin: 0; }
 .tr-layer strong { color: var(--head); font-weight: 600; }
 .tr-body { display: grid; grid-template-columns: minmax(0, 1.9fr) minmax(0, 1fr); gap: 32px; margin-top: 16px; align-items: start; }
 .rw-tok.pick { outline: 2px solid var(--head); }
@@ -712,7 +723,7 @@ main { padding-bottom: 96px; }
 /* ---------- responsive ---------- */
 @media (max-width: 640px) {
   :root {
-    --fs-lede: 18px; --fs-h2: 30px; --fs-h3: 22px; --fs-intro: 19px; --fs-body: 17px;
+    --fs-lede: 17px; --fs-h2: 30px; --fs-h3: 22px; --fs-intro: 19px; --fs-body: 17px;
     --gutter: 18px;
   }
   .actions li { flex: 0 0 calc(50% - 7px); }

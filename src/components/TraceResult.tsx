@@ -8,22 +8,20 @@ import { splitToken, Whitespace } from "./TokenText";
 // rest are scaled by the operation's largest score in this text, drawn with up to 72% of its colour.
 const SHADE_MAX = 0.72;
 const MIN_SHADE = 0.02;
-const DEFAULT_LAYER = 20; // the layer of the paper's token figures (10_main_figure.py), "Layer 21"
+const LAYER = 20; // 0-based; the layer of the paper's token figures (10_main_figure.py), "Layer 21"
 const DEFAULT_BANDS = 3;
 
 const fmt = (v: number) => (v < 0 ? "−" : "") + Math.abs(v).toFixed(2);
 
 /** Token-level result of one hosted analysis: one heatmap band per chosen operation, plus a token readout. */
 export function TraceResult({ trace }: { trace: Trace }) {
-  const L = trace.layers.length;
-  const [layerIdx, setLayerIdx] = useState(() => Math.max(0, trace.layers.indexOf(DEFAULT_LAYER)));
-  // scores[op][token] at the chosen layer (operation order as in OPERATIONS / LABELS).
+  const layerIdx = Math.max(0, trace.layers.indexOf(LAYER));
+  // scores[op][token] at Layer 21 (operation order as in OPERATIONS / LABELS).
   const S = useMemo(() => trace.labels.map((l) => trace.scores[l][layerIdx]), [trace, layerIdx]);
   const [ops, setOps] = useState<number[]>(() => {
-    // Start with the operations with the largest mean positive score at the default layer.
-    const li = Math.max(0, trace.layers.indexOf(DEFAULT_LAYER));
+    // Start with the operations with the largest mean positive score.
     const mean = trace.labels.map((l, k) => {
-      const row = trace.scores[l][li];
+      const row = trace.scores[l][layerIdx];
       return [k, row.reduce((a, v) => a + Math.max(v, 0), 0) / row.length] as const;
     });
     return mean.sort((a, b) => b[1] - a[1]).slice(0, DEFAULT_BANDS).map(([k]) => k).sort((a, b) => a - b);
@@ -83,12 +81,9 @@ export function TraceResult({ trace }: { trace: Trace }) {
             ))}
           </div>
         </div>
-        <label className="rw-control tr-layer">
-          <span className="sv-label">
-            Layer <strong>{trace.layers[layerIdx] + 1}</strong> <span className="rw-muted">of {L}</span>
-          </span>
-          <input type="range" min={0} max={L - 1} value={layerIdx} onChange={(e) => setLayerIdx(Number(e.target.value))} />
-        </label>
+        <p className="rw-control tr-layer sv-label">
+          Layer <strong>{trace.layers[layerIdx] + 1}</strong>
+        </p>
       </div>
 
       <div className="tr-body">
@@ -105,7 +100,7 @@ export function TraceResult({ trace }: { trace: Trace }) {
 
         <aside className="tr-detail" aria-live="polite">
           {focus === null ? (
-            <p className="rw-muted">Hover or click a token to see its score for every operation at this layer.</p>
+            <p className="rw-muted">Hover or click a token to see its score for every operation.</p>
           ) : (
             <>
               <p className="tr-detail-tok">

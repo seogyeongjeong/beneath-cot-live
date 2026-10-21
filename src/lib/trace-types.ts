@@ -62,6 +62,8 @@ export interface WireResult {
   cosine?: Record<string, number[][]>;
   generation?: WireGeneration;
   timing_ms: { forward: number; total: number };
+  /** Optional, informational: where the job ran. Not part of the scientific result. */
+  infrastructure?: { backend?: string; gpu?: string | null };
 }
 
 export interface PresetMeta {
