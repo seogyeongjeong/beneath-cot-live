@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { OperationTable } from "./OperationTable";
 
 // Supplied by the authors. Until the file exists the image request fails and a labelled
 // placeholder naming the expected path is shown; adding the file is enough to publish it.
@@ -41,6 +42,11 @@ export function HowItWorks() {
           internal representations.
         </p>
       </div>
+
+      <details className="taxonomy-details">
+        <summary>The eight reasoning operations, with definitions and examples</summary>
+        <OperationTable />
+      </details>
     </section>
   );
 }

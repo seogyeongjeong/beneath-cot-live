@@ -1,4 +1,5 @@
 import { PAPER } from "../lib/paper";
+import { HeroTeaser } from "./HeroTeaser";
 
 /** Stops the browser from breaking inside "Chains-of-Thought" at a hyphen. */
 function keepHyphenatedWords(text: string) {
@@ -53,7 +54,8 @@ export function Hero() {
       <h1 className="headline">What happens beneath the surface of reasoning?</h1>
       <p className="paper-title">{keepHyphenatedWords(PAPER.title)}</p>
       <p className="hero-lede">
-        Exploring how distinct reasoning operations emerge in the hidden representations of language models.
+        We identify distinct reasoning operations in LLM hidden representations, revealing structure beyond words and
+        token positions.
       </p>
 
       <div className="byline">
@@ -111,6 +113,11 @@ export function Hero() {
           </li>
         ))}
       </ul>
+
+      <HeroTeaser />
+      <a className="explore-link" href="#examples">
+        Explore examples →
+      </a>
     </section>
   );
 }

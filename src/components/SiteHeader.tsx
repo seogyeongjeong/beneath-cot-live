@@ -3,9 +3,9 @@ import { PAPER } from "../lib/paper";
 // Only sections that exist are listed; add each one here as it is built.
 const SECTIONS: { href: string; label: string }[] = [
   { href: "#why", label: "Motivation" },
+  { href: "#findings", label: "Findings" },
   { href: "#method", label: "Method" },
   { href: "#examples", label: "Examples" },
-  { href: "#findings", label: "Findings" },
   { href: "#try", label: "Try it" },
   { href: "#citation", label: "Citation" },
 ];

@@ -14,9 +14,9 @@ export default function App() {
       <main>
         <Hero />
         <WhyItMatters />
+        <KeyDiscoveries />
         <HowItWorks />
         <RepresentativeExamples />
-        <KeyDiscoveries />
         <TryItYourself />
         <AbstractCitation />
       </main>

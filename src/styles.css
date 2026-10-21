@@ -91,7 +91,7 @@ a { color: var(--link); text-decoration-thickness: 1px; text-underline-offset: 3
 /* ---------- hero ----------
    Venue, headline and paper title read as one unit; the lede, byline and
    actions follow with progressively larger gaps. */
-.hero { padding-top: 72px; }
+.hero { padding-top: 48px; }
 .venue { font-size: var(--fs-ui); font-weight: 600; color: var(--accent); margin: 0 0 12px; }
 .headline {
   font-size: var(--fs-headline);
@@ -165,11 +165,7 @@ a { color: var(--link); text-decoration-thickness: 1px; text-underline-offset: 3
    spacing carry the hierarchy, as on CultureMix. */
 /* Each major section sits in a soft grey panel (as on CultureMix). The panel fills the .wrap
    gutters, so text inside keeps the same left and right edges as the hero. */
-.section {
-  background: var(--panel); border-radius: 14px;
-  margin-top: 64px; padding-top: 32px; padding-bottom: 40px;
-}
-.section + .section { margin-top: 28px; }
+.section { padding-top: 104px; }
 main { padding-bottom: 96px; }
 .section-heading {
   font-size: var(--fs-h2); font-weight: 700; line-height: 1.15; letter-spacing: -0.022em;
@@ -240,7 +236,8 @@ main { padding-bottom: 96px; }
 }
 
 /* Closing note of Key discoveries: a short paragraph and a quiet link to the paper. */
-.discovery-more { max-width: var(--prose); margin: 64px auto 0; }
+.discovery-more { max-width: var(--prose); margin: 64px auto 0; padding: 24px 28px; background: var(--panel); border-radius: 12px; }
+.discovery-more p:last-of-type { margin-bottom: 10px; }
 .discovery-more-title { font-size: 23px; font-weight: 600; line-height: 1.3; letter-spacing: -0.014em; margin-bottom: 10px; }
 .discovery-more p { color: var(--ink); margin-bottom: 12px; text-wrap: pretty; }
 .more-link { font-size: 16px; font-weight: 500; color: var(--accent); text-decoration: none; }
@@ -426,14 +423,27 @@ main { padding-bottom: 96px; }
 
 /* Representative examples: no grey panel; each pattern is a heading, a one-line note and an
    interactive figure (token heatmap | operation scatter, equal columns). */
-.section-plain { background: none; border-radius: 0; padding-top: 72px; padding-bottom: 24px; }
-.section + .section-plain, .section-plain + .section { margin-top: 28px; }
 .rw-pattern { margin-top: 56px; }
 .section-intro + .rw-pattern { margin-top: 40px; }
 .rw-pattern + .rw-pattern { margin-top: 72px; padding-top: 48px; border-top: 1px solid var(--rule); }
 .rw-pattern-title { font-size: 24px; font-weight: 600; line-height: 1.3; letter-spacing: -0.014em; margin: 0; }
 .rw-sequence { font-size: var(--fs-ui); color: var(--ink-2); margin: 4px 0 0; }
-.rw-pattern-text { max-width: 900px; color: var(--ink); margin: 10px 0 0; text-wrap: pretty; }
+.rw-shell { margin-top: 28px; padding: 22px 28px 26px; background: var(--panel); border-radius: 14px; }
+.rw-patterns { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.rw-patterns button {
+  display: flex; flex-direction: column; gap: 3px; text-align: left;
+  font: inherit; padding: 10px 14px; background: #fff; cursor: pointer;
+  border: 1px solid var(--rule-strong); border-radius: 10px;
+}
+.rw-patterns button:hover { border-color: var(--ink-2); }
+.rw-patterns button.on { border-color: var(--head); box-shadow: inset 0 0 0 1px var(--head); }
+.rw-pattern-name { font-size: 16px; font-weight: 600; color: var(--head); }
+.rw-pattern-seq { font-size: 13.5px; color: var(--ink-2); line-height: 1.4; }
+.rw-pattern-text { max-width: none; color: var(--ink); margin: 16px 0 0; text-wrap: pretty; }
+.rw-pattern-text strong { font-weight: 600; color: var(--head); }
+.rw-shell .rw-bands, .rw-shell .sv-frame { background: #fff; }
+.rw-shell .rw-bands { padding: 0 12px; border: 1px solid var(--rule-strong); border-radius: 8px; }
+.rw-shell .rw-question { background: #fff; }
 .rw-figure { margin-top: 22px; }
 
 .rw-controls { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 12px 28px; }
@@ -524,7 +534,6 @@ main { padding-bottom: 96px; }
 @media (max-width: 640px) {
   .rw-band { grid-template-columns: minmax(0, 1fr); gap: 4px; }
   .rw-question { flex-direction: column; gap: 6px; }
-  .section-plain { padding-top: 48px; }
 }
 
 /* ---------- How it works ---------- */
@@ -534,7 +543,7 @@ main { padding-bottom: 96px; }
 .method-after { margin-top: 24px; }
 .figure-placeholder {
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
-  width: 100%; aspect-ratio: 16 / 6; min-height: 200px;
+  width: 100%; aspect-ratio: 16 / 4; min-height: 180px;
   border: 1px dashed var(--rule-strong); border-radius: 8px; background: #fff;
   color: var(--ink-2); text-align: center; padding: 16px;
 }
@@ -542,7 +551,8 @@ main { padding-bottom: 96px; }
 .figure-placeholder code { font-family: var(--mono); font-size: 13px; color: var(--ink-2); word-break: break-all; }
 
 /* ---------- Try it yourself ---------- */
-.try { margin-top: 28px; }
+.try { margin-top: 28px; padding: 8px 28px 28px; background: var(--panel); border-radius: 14px; }
+.try-form textarea, .try-examples button { background: #fff; }
 .try-tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--rule-strong); }
 .try-tabs button {
   font: inherit; font-size: 16px; font-weight: 500; color: var(--ink-2);
@@ -636,6 +646,49 @@ main { padding-bottom: 96px; }
 }
 .bibtex-copy:hover { border-color: var(--ink-2); }
 
+/* ---------- Hero teaser: the paper's Figure 1 (image, or interactive replica from the same data) ---------- */
+.teaser { margin: 28px 0 0; padding: 18px 20px; background: var(--panel); border-radius: 14px; }
+.teaser-loading { min-height: 420px; }
+.teaser-image img { display: block; width: 100%; height: auto; }
+.teaser-replica { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+.teaser-text { background: #fff; border: 1px solid var(--rule-strong); border-radius: 8px; padding: 2px 14px; }
+.teaser-band { display: grid; grid-template-columns: 104px minmax(0, 1fr); gap: 10px; padding: 9px 0; }
+.teaser-band + .teaser-band { border-top: 1px solid var(--rule); }
+.teaser-label { font-size: 14px; font-weight: 600; padding-top: 2px; }
+.teaser-band p { margin: 0; font-size: 12px; line-height: 1.6; letter-spacing: -0.01em; word-spacing: -0.05em; color: var(--ink); }
+.teaser-tok { padding: 0.5px 1.5px; border-radius: 3px; }
+.teaser-tok.in-chunk { outline: 1.5px solid var(--head); }
+.teaser-plot svg { display: block; width: 100%; height: auto; background: #fff; border-radius: 8px; }
+.teaser-axis { font-size: 16px; font-weight: 600; fill: var(--ink); }
+.teaser-chunks { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 6px; }
+.teaser-chunks li { background: #fff; border: 1.5px solid; border-radius: 8px; padding: 6px 10px; cursor: default; }
+.teaser-chunks li.on { box-shadow: 0 0 0 2px rgba(32, 41, 56, 0.15); }
+.teaser-quote { margin: 0; font-size: 13.5px; font-weight: 600; }
+.teaser-scores { margin: 2px 0 0; display: flex; flex-wrap: wrap; gap: 2px 14px; font-size: 13px; color: var(--ink); font-variant-numeric: tabular-nums; }
+.explore-link {
+  display: inline-block; margin-top: 16px; font-size: 16px; font-weight: 600; color: var(--accent); text-decoration: none;
+}
+.explore-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* Table 1 as a collapsible supplement under How it works */
+.taxonomy-details { margin-top: 32px; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+.taxonomy-details summary {
+  cursor: pointer; padding: 14px 0; font-size: 16px; font-weight: 600; color: var(--head); list-style-position: inside;
+}
+.taxonomy-details summary:hover { color: var(--accent); }
+.taxonomy-details[open] summary { margin-bottom: 4px; }
+.taxonomy-details .ops-figure { margin: 4px auto 22px; }
+
+@media (max-width: 900px) {
+  .teaser-replica { grid-template-columns: minmax(0, 1fr); }
+  .rw-patterns { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .rw-shell, .try { padding-left: 14px; padding-right: 14px; margin-left: -4px; margin-right: -4px; }
+  .teaser { padding: 10px; margin-left: -4px; margin-right: -4px; }
+  .teaser-band { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+}
+
 /* ---------- responsive ---------- */
 @media (max-width: 640px) {
   :root {
@@ -645,11 +698,12 @@ main { padding-bottom: 96px; }
   .actions li { flex: 0 0 calc(50% - 7px); }
   .link-btn { width: 100%; }
   .wordmark { display: none; }
-  .site-header-inner { justify-content: flex-end; }
-  .site-header nav ul { gap: 16px; }
+  .site-header nav { overflow-x: auto; scrollbar-width: none; max-width: 100%; }
+  .site-header nav::-webkit-scrollbar { display: none; }
+  .site-header nav ul { gap: 16px; white-space: nowrap; }
+  .site-header-inner { justify-content: flex-start; }
   .hero { padding-top: 44px; }
-  .section { margin-top: 40px; padding-top: 24px; padding-bottom: 32px; border-radius: 0; }
-  .section + .section { margin-top: 16px; }
+  .section { padding-top: 72px; }
   .byline { margin-top: 26px; }
   .sv select { min-width: 0; width: 100%; }
   .sv-controls .sv-field:first-child { flex: 1 1 100%; }
