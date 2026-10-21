@@ -1,0 +1,136 @@
+{
+ "model": "Qwen3-8B",
+ "source": "latent_reasoning_pattern/08_token_label_separability.py \u2192 viz_data_sep.json",
+ "tag": "Qwen3-8B_polya_correct_res_k8_thr300_top10_mean_fixedwin",
+ "probe": "LDA probe on mean-pooled span representations (res_L{ll}_mean / res_embed_mean)",
+ "layers": [
+  "embed",
+  "0",
+  "10",
+  "20",
+  "26",
+  "35"
+ ],
+ "pairs": [
+  {
+   "id": "DECOMPOSITION_vs_DEDUCTION",
+   "y": "[STRUCTURAL-ANALYSIS.DECOMPOSITION]",
+   "x": "[INFERENCE-FLOW.CHAINING.DEDUCTION]",
+   "group": "paper",
+   "paperRow": 0,
+   "counts": {
+    "embed": 391,
+    "0": 292,
+    "10": 292,
+    "20": 292,
+    "26": 292,
+    "35": 292
+   }
+  },
+  {
+   "id": "RECALL_vs_ALGEBRAIC-MANIPULATION",
+   "y": "[RETRIEVAL.RECALL]",
+   "x": "[EXECUTION.OPERATION.ALGEBRAIC-MANIPULATION]",
+   "group": "paper",
+   "paperRow": 1,
+   "counts": {
+    "embed": 373,
+    "0": 208,
+    "10": 208,
+    "20": 208,
+    "26": 208,
+    "35": 208
+   }
+  },
+  {
+   "id": "RECALL_vs_FINAL-ANSWER",
+   "y": "[RETRIEVAL.RECALL]",
+   "x": "[FINAL-ANSWER]",
+   "group": "paper",
+   "paperRow": 2,
+   "counts": {
+    "embed": 196,
+    "0": 105,
+    "10": 105,
+    "20": 105,
+    "26": 105,
+    "35": 105
+   }
+  },
+  {
+   "id": "EXTRACTION_vs_RECALL",
+   "y": "[EXTRACTION]",
+   "x": "[RETRIEVAL.RECALL]",
+   "group": "other",
+   "paperRow": null,
+   "counts": {
+    "embed": 312,
+    "0": 193,
+    "10": 193,
+    "20": 193,
+    "26": 193,
+    "35": 193
+   }
+  },
+  {
+   "id": "EXTRACTION_vs_DEDUCTION",
+   "y": "[EXTRACTION]",
+   "x": "[INFERENCE-FLOW.CHAINING.DEDUCTION]",
+   "group": "other",
+   "paperRow": null,
+   "counts": {
+    "embed": 310,
+    "0": 233,
+    "10": 233,
+    "20": 233,
+    "26": 233,
+    "35": 233
+   }
+  },
+  {
+   "id": "DEDUCTION_vs_DIRECT-MAPPING",
+   "y": "[INFERENCE-FLOW.CHAINING.DEDUCTION]",
+   "x": "[SYMBOLIZATION.DIRECT-MAPPING]",
+   "group": "other",
+   "paperRow": null,
+   "counts": {
+    "embed": 385,
+    "0": 268,
+    "10": 268,
+    "20": 268,
+    "26": 268,
+    "35": 268
+   }
+  },
+  {
+   "id": "ALGEBRAIC-MANIPULATION_vs_FINAL-ANSWER",
+   "y": "[EXECUTION.OPERATION.ALGEBRAIC-MANIPULATION]",
+   "x": "[FINAL-ANSWER]",
+   "group": "other",
+   "paperRow": null,
+   "counts": {
+    "embed": 162,
+    "0": 90,
+    "10": 90,
+    "20": 90,
+    "26": 90,
+    "35": 90
+   }
+  },
+  {
+   "id": "ARITHMETIC-COMPUTATION_vs_FINAL-ANSWER",
+   "y": "[EXECUTION.OPERATION.ARITHMETIC-COMPUTATION]",
+   "x": "[FINAL-ANSWER]",
+   "group": "other",
+   "paperRow": null,
+   "counts": {
+    "embed": 160,
+    "0": 95,
+    "10": 95,
+    "20": 95,
+    "26": 95,
+    "35": 95
+   }
+  }
+ ]
+}
